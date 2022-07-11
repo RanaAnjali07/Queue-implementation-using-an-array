@@ -1,0 +1,111 @@
+<script>
+
+class Queue{
+	
+constructor(c)
+{
+	this.front = this.rear = 0;
+	this.capacity = c;
+	this.queue = new Array(this.capacity);
+}
+
+queueEnqueue(data)
+{
+	
+	if (this.capacity == this.rear)
+	{
+		document.write("<br>Queue is full<br>");
+		return;
+	}
+
+	else
+	{
+		this.queue[this.rear] = data;
+		this.rear++;
+	}
+	return;
+}
+
+queueDequeue()
+{
+
+	if (this.front == this.rear)
+	{
+		document.write("<br>Queue is empty<br>");
+		return;
+	}
+
+
+	else
+	{
+		for(let i = 0; i < this.rear - 1; i++)
+		{
+			this.queue[i] = this.queue[i + 1];
+		}
+
+		if (this.rear < this.capacity)
+			this.queue[this.rear] = 0;
+
+		this.rear--;
+	}
+	return;
+}
+
+
+queueDisplay()
+{
+	let i;
+	if (this.front == this.rear)
+	{
+		document.write("<br>Queue is Empty<br>");
+		return;
+	}
+
+	for(i = this.front; i < this.rear; i++)
+	{
+		document.write(this.queue[i] + " <-- ");
+	}
+	return;
+}
+
+
+queueFront()
+{
+	if (this.front == this.rear)
+	{
+		document.write("<br>Queue is Empty<br>");
+		return;
+	}
+	document.write("<br>Front Element is: " +
+				this.queue[this.front]);
+	return;
+}
+}
+
+
+let q = new Queue(4);
+
+q.queueDisplay();
+
+
+q.queueEnqueue(60);
+q.queueEnqueue(70);
+q.queueEnqueue(80);
+q.queueEnqueue(90);
+
+q.queueDisplay();
+
+q.queueEnqueue(60);
+
+q.queueDisplay();
+
+q.queueDequeue();
+q.queueDequeue();
+document.write("<br><br> after two node deletion <br><br>");
+
+q.queueDisplay();
+
+q.queueFront();
+
+
+</script>
